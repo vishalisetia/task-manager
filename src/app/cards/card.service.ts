@@ -4,7 +4,9 @@ import { Card } from './card.model';
 
 export class CardService {
     private cards: Card[] = [
+        new Card('done 2', 'this is a description', 'done'),
         new Card('todo 1', 'this is a description', 'todo'),
+        new Card('todo 2', 'this is a description', 'todo'),
         new Card('doing 1', 'this is a description', 'doing'),
         new Card('done 1', 'this is a description', 'done'),
     ];
@@ -13,8 +15,12 @@ export class CardService {
     // cardSelected = new Subject<Card>();
     cardsChanged = new Subject<Card[]>();
 
-    getCards() {
+    getAllCards() {
         return this.cards.slice();
+    }
+
+    getCardsByStatus(status: String) {
+        return this.cards.slice().filter(card => card.status == status);
     }
 
     getCard(index: number) {

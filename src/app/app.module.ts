@@ -9,8 +9,9 @@ import { CardsComponent } from './cards/cards.component';
 import { CardListComponent } from './cards/card-list/card-list.component';
 import { CardItemComponent } from './cards/card-list/card-item/card-item.component';
 import { CardService } from './cards/card.service';
-import { DataStorageService } from './shared/data-storage.service';
 import { NewCardComponent } from './cards/new-card/new-card.component';
+import { CardEditComponent } from './cards/card-edit/card-edit.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -19,10 +20,11 @@ import { NewCardComponent } from './cards/new-card/new-card.component';
     CardsComponent,
     CardListComponent,
     CardItemComponent,
-    NewCardComponent
+    NewCardComponent,
+    CardEditComponent,
   ],
-  imports: [BrowserModule, FormsModule, ReactiveFormsModule, HttpClientModule],
-  providers: [CardService, DataStorageService],
+  imports: [BrowserModule, FormsModule, ReactiveFormsModule, HttpClientModule, NgbModule],
+  providers: [CardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

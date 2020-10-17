@@ -1,7 +1,5 @@
-<app-card-list></app-card-list>
-
-<div class="row">
-    <div class="col-xs-12">
-        <h4 style="color:rgb(175, 172, 172)" (click)="onNewCard()">Add a card...</h4>
-    </div>
+<div class="container" style="width: 400px; color: rgb(0, 0, 0); background-color: rgb(230, 225, 233);">
+    <h3> {{ heading }} </h3>
+    <app-card-list [status]='status'></app-card-list>
+    <app-new-card></app-new-card>
 </div>

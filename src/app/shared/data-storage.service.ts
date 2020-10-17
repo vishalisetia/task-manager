@@ -6,9 +6,9 @@ import { tap } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class DataStorageService {
-    constructor(private http: HttpClient, private cardService: CardService) { }
+    constructor(private http: HttpClient, private cardsService: CardService) { }
     storeCards() {
-        const cards = this.cardService.getCards();
+        const cards = this.cardsService.getAllCards();
         this.http
             .put('https://ng-course-todo.firebaseio.com/cards.json', cards)
             .subscribe(response => {
@@ -20,7 +20,7 @@ export class DataStorageService {
             .get<Card[]>('https://ng-course-todo.firebaseio.com/cards.json')
             .pipe(
                 tap(response => {
-                    this.cardService.setCards(response);
+                    this.cardsService.setCards(response);
                 })
             )
     }

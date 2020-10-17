@@ -9,16 +9,16 @@ import { CardService } from './card.service';
   providers: [CardService]
 })
 export class CardsComponent implements OnInit {
-
-  @Input() appStatus: string;
+  @Input() heading: string;
+  status: string;
 
   constructor() { }
 
   ngOnInit(): void {
+    this.status = this.heading;
   }
 
   onNewCard() {
 
   }
-
 }
