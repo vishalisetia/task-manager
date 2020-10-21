@@ -13,8 +13,7 @@
                 <div class="col-xs-12">
                     <div class="form-group">
                         <label for="description">Description</label>
-                        <textarea type="text" id="description" formControlName="description" class="form-control"
-                            rows="6"></textarea>
+                        <textarea type="text" id="description" formControlName="description" class="form-control" rows="6"></textarea>
                     </div>
                 </div>
             </div>
@@ -22,14 +21,18 @@
                 <div class="col-xs-12">
                     <div class="form-group">
                         <label for="status">Status</label>
-                        <input type="text" id="status" formControlName="status" class="form-control">
+                        <select name="status" id="status" formControlName="status" class="form-control">
+                            <option value="todo" selected>todo</option>
+                            <option value="doing">doing</option>
+                            <option value="done">done</option>
+                        </select>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-xs-12">
-                    <button type="submit" class="btn btn-success">Save</button>
-                    <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
+                    <button style='margin-right:16px' type="button" class="btn btn-primary" (click)="onSubmit()">Save</button>
+                    <button style='margin-right:16px' type="button" class="btn btn-primary" (click)="onClose()">Close</button>
                 </div>
             </div>
         </form>

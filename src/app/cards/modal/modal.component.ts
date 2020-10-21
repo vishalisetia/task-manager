@@ -1,33 +1,34 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute, Params, Router } from '@angular/router';
 import { DataStorageService } from 'src/app/shared/data-storage.service';
-import { CardService } from '../card.service';
+import { CardService } from '../../shared/card.service';
+import { NotificationService } from '../../shared/notification.service';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Card } from '../card.model';
 
 @Component({
-  selector: 'app-card-edit',
-  templateUrl: './card-edit.component.html',
-  styleUrls: ['./card-edit.component.css']
+  selector: 'app-modal',
+  templateUrl: './modal.component.html',
+  styleUrls: ['./modal.component.css']
 })
-export class CardEditComponent implements OnInit {
+export class ModalComponent implements OnInit {
 
   id: number;
   editMode = false;
   cardForm: FormGroup;
 
-  constructor(private route: ActivatedRoute, private cardService: CardService, private router: Router, private dataStorageService: DataStorageService) { }
+  constructor(
+    private cardService: CardService,
+    private dataStorageService: DataStorageService,
+    private notificationService: NotificationService,
+    private dialogRef: MatDialogRef<ModalComponent>,
+    @Inject(MAT_DIALOG_DATA) public card: Card) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe(
-      (params: Params) => {
-        this.id = +params['id'];
-        this.editMode = params['id'] != null;
-        this.initForm();
-      }
-    );
+    this.initForm();
   }
 
-  private initForm() {
+  initForm() {
     let cardTitle = '';
     let cardDescription = '';
     let cardStatus = '';
@@ -51,9 +52,12 @@ export class CardEditComponent implements OnInit {
       this.cardService.addCard(this.cardForm.value);
     }
     this.dataStorageService.storeCards();
+    this.notificationService.success('Added Successfully');
+    this.dialogRef.close();
   }
 
-  onCancel() {
+  onClose() {
+    this.dialogRef.close();
   }
 
 }

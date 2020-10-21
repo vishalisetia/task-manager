@@ -1,6 +1,4 @@
-import { AfterViewInit } from '@angular/core';
-import { ElementRef } from '@angular/core';
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -8,7 +6,5 @@ import { Component, ViewEncapsulation } from '@angular/core';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
-
-
 
 }
